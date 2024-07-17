@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - Music10X</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <style>
+        /* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1c1c1c;
+    color: #ccc;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #ccc;
+}
+
+a:hover {
+    color: #fff;
+}
+
+header {
+    padding: 20px;
+    text-align: center;
+    background: #333;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.search-box {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-box input[type="text"] {
+    width: 80%;
+    max-width: 500px;
+    padding: 10px;
+    border: 1px solid #ffffff;
+    background-color: #333;
+    color: #ccc;
+    border-radius: 25px;
+    outline: none; /* Remove default input focus outline */
+}
+
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.category {
+    flex: 1 1 calc(33.333% - 20px);
+    margin: 10px;
+    background-color: #333;
+    text-align: center;
+    border: 1px solid #444;
+    padding: 20px; /* Increased padding for better visual separation */
+    border-radius: 10px;
+    max-width: 150px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.category:hover {
+    transform: translateY(-5px); /* Add a slight hover effect */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Add a subtle shadow on hover */
+}
+
+.category img {
+    width: 100%; /* Ensure images fill their container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.category p {
+    padding: 10px;
+    margin: 0;
+    background-color: #444;
+    color: #fff;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .category {
+        flex: 1 1 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .category {
+        flex: 1 1 100%;
+    }
+
+    .search-box input[type="text"] {
+        width: 100%;
+        max-width: unset;
+    }
+}
+
+    </style>
+
+    <div class="container">
+        <header>
+            <h1>Search Music Categories</h1>
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Search Categories...">
+            </div>
+        </header>
+
+        <p>For now, search from these categories:</p>
+        <div class="categories" id="categories">
+            <div class="category" data-category="arijit">
+                <a href="directorys/arijit.html">
+                    <img src="directorys/audio/Arijit/8b6b69c7-cf2c-48fc-973c-aa7867d68c2a.jpg" alt="Arijit Singh">
+                    <p>Arijit Singh</p>
+                </a>
+            </div>
+            <div class="category" data-category="lata">
+                <a href="directorys/slowed.html">
+                    <img src="directorys/audio/slowed/14cf751e-9f44-4f0f-9123-06afe98551da.jpg" alt="Lata Mangeshkar">
+                    <p>Lata Mangeshkar</p>
+                </a>
+            </div>
+            <div class="category" data-category="kishore">
+                <a href="directorys/Speed up.html">
+                    <img src="directorys/audio/speedup/4a5a39bf-e4e9-4490-9b2f-6a251a0b5f68.jpg" alt="Kishore Kumar">
+                    <p>Kishore Kumar</p>
+                </a>
+            </div>
+            <div class="category" data-category="trending">
+                <a href="directorys/Top tranding.html">
+                    <img src="images/non.jpg" alt="Top Trending">
+                    <p>Top Trending</p>
+                </a>
+            </div>
+            <div class="category" data-category="playlist">
+                <a href="directorys/My playlist.html">
+                    <img src="images/spotify playlist.jpg" alt="My Playlist">
+                    <p>My Playlist</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const searchInput = document.getElementById('search-input');
+    const categories = document.querySelectorAll('.category');
+
+    searchInput.addEventListener('input', function() {
+        const filter = searchInput.value.trim().toLowerCase();
+
+        categories.forEach(category => {
+            const categoryName = category.getAttribute('data-category').toLowerCase();
+            const categoryTitle = category.querySelector('p').textContent.toLowerCase();
+
+            if (categoryName.includes(filter) || categoryTitle.includes(filter)) {
+                category.style.display = "flex";
+            } else {
+                category.style.display = "none";
+            }
+        });
+    });
+});
+
+    </script>
+</body>
+</html>
